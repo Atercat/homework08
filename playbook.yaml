@@ -60,6 +60,7 @@
       docker_image:
         name: atercat/myboxfuse:tomcat
         dockerfile: /dockerfile/Dockerfile
-        buildargs: "artifact:/war/{{ artifact }}"
+        buildargs:
+          artifact: "/war/{{ artifact }}"
         state: build
         push: yes
