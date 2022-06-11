@@ -1,0 +1,6 @@
+{
+    "_comment":"Example of file used to login to Dockerhub",
+    "docker_login":"user",
+    "docker_password":"password",
+    "docker_email":"mail@example.com"
+}
