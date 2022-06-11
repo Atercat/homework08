@@ -19,6 +19,11 @@
         name: docker
         state: started
 
+    - name: Ensure docker-py python extension is installed
+      pip:
+        name: docker-py
+        state: present
+
     - name: Ensure a build container is present then restart it
       docker_container:
         name: build
