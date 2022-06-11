@@ -13,7 +13,7 @@
         name: build
         state: present
         image: maven:3.6-alpine
-        volume:
+        volumes:
           - /war:/war
         command: >
           /bin/bash -c "apk update
