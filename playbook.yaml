@@ -54,7 +54,7 @@
     - name: Copy Dockerfile to Buildnode
       copy:
         src: Dockerfile
-        dest: /dockerfile/Dockerfile
+        dest: /dockerfile/
 
     - name: Build production image
       docker_image:
