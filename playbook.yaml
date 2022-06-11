@@ -8,6 +8,17 @@
       file:
         path: /war
         state: directory
+
+    - name: Ensure Docker is installed
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Ensure Docker service is running
+      service:
+        name: docker
+        state: started
+
     - name: Ensure a build container is present then restart it
       docker_container:
         name: build
