@@ -24,7 +24,7 @@
         name: docker
         state: started
 
-    - name: Ensure a build container is present then restart it
+    - name: Create build container
       docker_container:
         name: build
         state: started
