@@ -56,10 +56,16 @@
         src: Dockerfile
         dest: /war/
 
-    - name: Build production image
+    - name: Login to Dockerhub
+      docker_login:
+        username: "{{ docker_login }}"
+        password: "{{ docker_password }}"
+        email: "{{ docker_email }}"
+
+    - name: Build production image and push it to Dockerhub
       docker_image:
         name: atercat/myboxfuse:tomcat
         path: /war
         buildargs:
           artifact: "{{ artifact }}"
-        #push: yes
+        push: yes
