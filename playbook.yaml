@@ -50,7 +50,6 @@
     - name: Ensure newly built artifact is present
       file:
         path: "/war/{{ artifact }}"
-        state: present
     
     - name: Copy Dockerfile to Buildnode
       copy:
