@@ -4,7 +4,8 @@
   become: yes
 
   # variables
-  artifact: hello-1.0.war
+  vars:
+    artifact: hello-1.0.war
 
   tasks:
     - name: Ensure artifact directory exists
