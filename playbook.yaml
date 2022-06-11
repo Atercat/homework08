@@ -63,4 +63,4 @@
         buildargs:
           artifact: "/war/{{ artifact }}"
         state: build
-        push: yes
+        #push: yes
