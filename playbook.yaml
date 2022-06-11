@@ -1,4 +1,6 @@
 ---
+# tested at ansible 2.5.1
+
 vars:
   git_repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
   artifact: hello-1.0.war
