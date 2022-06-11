@@ -15,17 +15,14 @@
     
     - name: Ensure previously built artifact is absent
       file:
-        path: "{{ artifact }}"
+        path: "/war/{{ artifact }}"
         state: absent
 
     - name: Ensure Docker is installed
       apt:
-        name: docker.io
-        state: present
-
-    - name: Ensure Docker python extension is installed
-      apt:
-        name: python-docker
+        name:
+          - docker.io
+          - python-docker
         state: present
 
     - name: Ensure Docker service is running
