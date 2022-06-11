@@ -98,4 +98,3 @@
         image: "{{ app_image }}"
         ports: "8080:8080"
         recreate: yes
----
