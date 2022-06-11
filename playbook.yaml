@@ -54,12 +54,12 @@
     - name: Copy Dockerfile to Buildnode
       copy:
         src: Dockerfile
-        dest: /dockerfile/
+        dest: /war/
 
     - name: Build production image
       docker_image:
         name: atercat/myboxfuse:tomcat
-        path: /dockerfile/
+        path: /war
         buildargs:
-          artifact: "/war/{{ artifact }}"
+          artifact: "{{ artifact }}"
         #push: yes
