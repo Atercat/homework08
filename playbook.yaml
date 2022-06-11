@@ -1,23 +1,15 @@
 ---
-- name: Build node
-  hosts: build
-  become: yes
+vars:
+  git_repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+  artifact: hello-1.0.war
+  app_image: atercat/myboxfuse:tomcat
 
-  vars:
-    git_repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
-    artifact: hello-1.0.war
 
+- name: Install Docker to Build and Run nodes
+  hosts:
+    - build
+    - run
   tasks:
-    - name: Ensure artifact directory exists
-      file:
-        path: /war
-        state: directory
-    
-    - name: Ensure previously built artifact is absent
-      file:
-        path: "/war/{{ artifact }}"
-        state: absent
-
     - name: Ensure Docker is installed
       apt:
         name:
@@ -29,6 +21,22 @@
       service:
         name: docker
         state: started
+
+
+- name: Build node
+  hosts: build
+  become: yes
+
+  tasks:
+    - name: Ensure artifact directory exists
+      file:
+        path: /war
+        state: directory
+    
+    - name: Ensure previously built artifact is absent
+      file:
+        path: "/war/{{ artifact }}"
+        state: absent
 
     - name: Create build container
       docker_container:
@@ -64,8 +72,21 @@
 
     - name: Build production image and push it to Dockerhub
       docker_image:
-        name: atercat/myboxfuse:tomcat
+        name: "{{ app_image }}"
         path: /war
         buildargs:
           artifact: "{{ artifact }}"
         push: yes
+
+
+- name: Run node
+  hosts: run
+
+  tasks:
+    - name: Run app container at production server
+      docker_container:
+        name: run
+        state: started
+        image: "{{ app_image }}"
+        ports: "8080:8080"
+---
