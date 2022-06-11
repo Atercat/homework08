@@ -59,7 +59,7 @@
     - name: Build production image
       docker_image:
         name: atercat/myboxfuse:tomcat
-        dockerfile: /dockerfile/Dockerfile
+        dockerfile: /dockerfile/
         buildargs:
           artifact: "/war/{{ artifact }}"
         state: build
